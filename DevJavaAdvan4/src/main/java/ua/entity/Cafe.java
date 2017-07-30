@@ -38,9 +38,9 @@ public class Cafe {
 	private String phone;
 	
 	private String email;
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	private OpenClose open;
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	private OpenClose close;
 	
 	public Integer getId() {
