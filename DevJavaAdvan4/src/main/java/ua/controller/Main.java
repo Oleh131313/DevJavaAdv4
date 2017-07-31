@@ -1,5 +1,7 @@
 package ua.controller;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -35,12 +37,12 @@ public class Main {
 //		cafe.setShortDescription("Short desc");
 //		cafe.setType(Type.CAFE);
 //		em.persist(cafe);
-		Cafe cafe = em.find(Cafe.class, 1);
-		System.out.println(cafe.getOpen());
-		System.out.println(cafe.getClose());
-		
-		
-		
+		List<Cafe> list = em.createQuery("FROM Cafe c WHERE c.name=?1", Cafe.class)
+				.setParameter(1, "addada")
+				.getResultList();
+		for (Cafe cafe : list) {
+			System.out.println(cafe.getName());
+		}
 		em.getTransaction().commit();
 		em.close();
 		factory.close();
