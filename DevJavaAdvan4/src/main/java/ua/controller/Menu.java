@@ -23,31 +23,40 @@ public class Menu {
 		EntityManager em = factory.createEntityManager();
 		em.getTransaction().begin();
 		Cafe cafe = new Cafe();
+		
 		System.out.println("Ведіть назву кафе ");
 		String name=sc.next();
 		cafe.setName(name);
+		
 		System.out.println("Ведіть адрес кафе");
 		String adresCafe=sc.next();
 		cafe.setAddress(adresCafe);
+		
 		System.out.println("Ведіть тип кафе(PUB, SUSHY, BAR, CAFE, RESTAURANT) ");
 		String input=sc.next();
 		Type type=Type.valueOf(input.toUpperCase());
 		cafe.setType(type);
+		
 		System.out.println("Ведіть Email кафе ");
 		String email=sc.next();
 		cafe.setEmail(email);
+		
 		System.out.println("Ведіть телефон  кафе ");
 		String phone=sc.next();
 		cafe.setPhone(phone);
+		
 		System.out.println("Ведіть повний опис кафе ");
 		String fullDescr=sc.next();
 		cafe.setFullDescription(fullDescr);
+		
 		System.out.println("Ведіть короткий опис ");
 		String shordDescr=sc.next();
 		cafe.setShortDescription(shordDescr);
+		
 		System.out.println("Ведіть з якої години працює кафе(спочатку годину потим хвилини");
 		OpenClose open=new OpenClose (LocalTime.of(sc.nextInt(), sc.nextInt()));
 		em.persist(open);
+		
 		System.out.println("Ведіть до якої години працює кафе(спочатку годину потим хвилини");
 		OpenClose close=new OpenClose (LocalTime.of(sc.nextInt(), sc.nextInt()));
 		cafe.setClose(close);
@@ -93,11 +102,6 @@ public class Menu {
 				.getResultList();
 		for (Cafe cafe : list) {
 			if(name.equals(cafe.getName())) {
-				System.out.println("Ведіть тип кафе(PUB, SUSHY, BAR, CAFE, RESTAURANT) ");
-				String input=sc.next();
-				Type type=Type.valueOf(input.toUpperCase());
-				cafe.setType(type);
-				
 				System.out.println("Ведіть назву кафе ");
 				String editName=sc.next();
 				cafe.setName(editName);
@@ -105,6 +109,11 @@ public class Menu {
 				System.out.println("Ведіть адрес кафе");
 				String adresCafe=sc.next();
 				cafe.setAddress(adresCafe);
+				
+				System.out.println("Ведіть тип кафе(PUB, SUSHY, BAR, CAFE, RESTAURANT) ");
+				String input=sc.next();
+				Type type=Type.valueOf(input.toUpperCase());
+				cafe.setType(type);
 				
 				System.out.println("Ведіть Email кафе ");
 				String email=sc.next();
@@ -118,24 +127,25 @@ public class Menu {
 				String fullDescr=sc.next();
 				cafe.setFullDescription(fullDescr);
 				
+				
 				System.out.println("Ведіть короткий опис ");
 				String shordDescr=sc.next();
 				cafe.setShortDescription(shordDescr);
 				
 				System.out.println("Ведіть з якої години працює кафе(спочатку годину потим хвилини");
 				OpenClose open=new OpenClose (LocalTime.of(sc.nextInt(), sc.nextInt()));
-				cafe.setOpen(open);
 				em.persist(open);
 				
 				System.out.println("Ведіть до якої години працює кафе(спочатку годину потим хвилини");
 				OpenClose close=new OpenClose (LocalTime.of(sc.nextInt(), sc.nextInt()));
 				cafe.setClose(close);
+				
 				em.persist(close);
 				em.persist(cafe);
 			}
-			em.getTransaction().commit();
-			em.close();
-			factory.close();
 		}
+		em.getTransaction().commit();
+		em.close();
+		factory.close();
 	}
 }
