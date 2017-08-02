@@ -1,21 +1,20 @@
 package ua.controller;
 
-import java.util.Scanner;
+import java.time.LocalTime;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import ua.entity.Cafe;
-import ua.entity.OpenClose;
-import ua.entity.Type;
 
 public class Main {
 
 	public static void main(String[] args) {
-//		EntityManagerFactory factory = Persistence.createEntityManagerFactory("primary");
-//		EntityManager em = factory.createEntityManager();
-//		em.getTransaction().begin();
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("primary");
+		EntityManager em = factory.createEntityManager();
+		em.getTransaction().begin();
 //		OpenClose open= new OpenClose(LocalTime.of(22, 0));
 //		em.persist(open);
 //		em.detach(open);
@@ -43,27 +42,27 @@ public class Main {
 //		for (Cafe cafe : list) {
 //			System.out.println(cafe.getName());
 //		}
-//		em.getTransaction().commit();
-//		em.close();
-//		factory.close();
-		Scanner sc = new Scanner(System.in);
-		Menu menu = new Menu();
-		System.out.println("якшо ви хочете додати кафе, введ≥ть 1");
-		System.out.println("якшо ви хочете видалити кафе, введ≥ть 2");
-		System.out.println("якшо ви хочете редагувати кафе, введ≥ть 3");
-		System.out.println("¬вед≥ть вашу цифру:");
-		int menu1 = sc.nextInt();
-		switch (menu1) {
-		case 1:
-			menu.addCafe();
-			break;
-		case 2:
-			menu.deleteCafe();
-			break;
-		case 3:
-			menu.edit();
-			break;
+		List<Cafe> cafes = em.createQuery("SELECT c FROM Cafe c JOIN  c.open o WHERE o = ?1", Cafe.class)
+				.setParameter(1, LocalTime.of(12, 0))
+				.getResultList();
+		for (Cafe cafe : cafes) {
+			System.out.println(cafe.getOpen());
 		}
+		em.getTransaction().commit();
+		em.close();
+		factory.close();
+//		Menu menu = new Menu();
+//		switch (menu.menu()) {
+//		case 1:
+//			menu.addCafe();
+//			break;
+//		case 2:
+//			menu.deleteCafe();
+//			break;
+//		case 3:
+//			menu.edit();
+//			break;
+//		}
 		
 		
 	}

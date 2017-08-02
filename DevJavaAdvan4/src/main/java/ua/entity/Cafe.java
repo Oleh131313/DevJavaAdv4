@@ -137,5 +137,12 @@ public class Cafe extends AbstractEntity{
 	public void setTables(List<ua.entity.Table> tables) {
 		this.tables = tables;
 	}
+	@Override
+	public String toString() {
+		return "Cafe [rate=" + rate + ", name=" + name + ", photoUrl=" + photoUrl + ", version=" + version
+				+ ", address=" + address + ", shortDescription=" + shortDescription + ", fullDescription="
+				+ fullDescription + ", type=" + type + ", phone=" + phone + ", email=" + email + ", open=" + open
+				+ ", close=" + close + ", tables=" + tables + ", meals=" + meals + "]";
+	}
 	
 }

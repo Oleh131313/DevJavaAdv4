@@ -18,6 +18,15 @@ public class Menu {
 
 	Scanner sc = new Scanner(System.in);
 	
+	int menu(){
+		System.out.println("якшо ви хочете додати кафе, введ≥ть 1");
+		System.out.println("якшо ви хочете видалити кафе, введ≥ть 2");
+		System.out.println("якшо ви хочете редагувати кафе, введ≥ть 3");
+		System.out.println("¬вед≥ть вашу цифру:");
+		int menu = sc.nextInt();
+		return menu;
+	}
+	
 	void addCafe(){
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("primary");
 		EntityManager em = factory.createEntityManager();

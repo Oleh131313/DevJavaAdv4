@@ -52,4 +52,10 @@ public class OpenClose extends AbstractEntity{
 	public void setTime(LocalTime time) {
 		this.time = time;
 	}
+
+	@Override
+	public String toString() {
+		return "OpenClose [time=" + time + "]";
+	}
+	
 }
